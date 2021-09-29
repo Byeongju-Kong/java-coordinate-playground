@@ -38,11 +38,8 @@ public class Point {
         }
     }
 
-    public Integer getXDifference(final Point another) {
-        return x.getDifference(another.x);
-    }
-
-    public Integer getYDifference(final Point another) {
-        return y.getDifference(another.y);
+    public double getDistance(final Point another) {
+        return Math.sqrt(Math.pow(x.getDifference(another.x), 2)
+                + Math.pow(y.getDifference(another.y), 2));
     }
 }

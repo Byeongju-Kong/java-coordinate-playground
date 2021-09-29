@@ -1,14 +1,11 @@
 package model.shape;
 
-import model.shape.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.assertj.core.api.Assertions.*;
 
 class PointTest {
     @ParameterizedTest
@@ -37,11 +34,10 @@ class PointTest {
     @Test
     @DisplayName("두 점의 x값 차, y값의 차를 반환한다.")
     void getDifference() {
-        Point firstPoint = Point.create("3,6");
-        Point secondPoint = Point.create("1,2");
-        assertAll(
-                () -> assertThat(firstPoint.getXDifference(secondPoint)).isEqualTo(2),
-                () -> assertThat(firstPoint.getYDifference(secondPoint)).isEqualTo(4)
-        );
+        Point firstPoint = Point.create("1,1");
+        Point secondPoint = Point.create("2,2");
+        double expect = 1.414;
+        double actual = firstPoint.getDistance(secondPoint);
+        assertThat(actual).isEqualTo(expect, offset(0.00099));
     }
 }
