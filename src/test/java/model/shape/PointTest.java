@@ -3,7 +3,11 @@ package model.shape;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -39,5 +43,23 @@ class PointTest {
         double expect = 1.414;
         double actual = firstPoint.getDistance(secondPoint);
         assertThat(actual).isEqualTo(expect, offset(0.00099));
+    }
+
+    @ParameterizedTest
+    @DisplayName("x, y 중 하나의 값만 같은 경우에만 true를 반환한다.")
+    @MethodSource("providePointsAndNotSameOrDiagonalExpect")
+    void isNotSameOrDiagonal(Point another, boolean expect) {
+        Point standard = Point.create("1,1");
+        boolean actual = standard.isNotSameOrDiagonal(another);
+        assertThat(actual).isEqualTo(expect);
+    }
+
+    private static Stream<Arguments> providePointsAndNotSameOrDiagonalExpect() {
+        return Stream.of(
+                Arguments.of(Point.create("1,1"), false),
+                Arguments.of(Point.create("1,2"), true),
+                Arguments.of(Point.create("2,1"), true),
+                Arguments.of(Point.create("2,2"), false)
+        );
     }
 }

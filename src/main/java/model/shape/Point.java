@@ -42,4 +42,9 @@ public class Point {
         return Math.sqrt(Math.pow(x.getDifference(another.x), 2)
                 + Math.pow(y.getDifference(another.y), 2));
     }
+
+    public boolean isNotSameOrDiagonal(final Point another) {
+        return (x.equals(another.x) && !y.equals(another.y)) ||
+                (!x.equals(another.x) && y.equals(another.y));
+    }
 }
