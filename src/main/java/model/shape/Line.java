@@ -21,7 +21,6 @@ public class Line {
     }
 
     public double getLength() {
-        return Math.sqrt(Math.pow(firstPoint.getXDifference(secondPoint), 2)
-                + Math.pow(firstPoint.getYDifference(secondPoint), 2));
+        return firstPoint.getDistance(secondPoint);
     }
 }
