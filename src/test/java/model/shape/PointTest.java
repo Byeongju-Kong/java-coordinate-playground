@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -14,25 +13,21 @@ import static org.assertj.core.api.Assertions.*;
 class PointTest {
     @ParameterizedTest
     @DisplayName("길이가 1이거나 공백을 포함하는 문자열로 객체를 생성하면 예외를 발생시킨다.")
-    @ValueSource(strings = {"()", "( )", "(1 , 2)"})
-    void create_ExceptionByBlank(String wrongCoordinate) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Point.create(wrongCoordinate))
-                .withMessage("좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다.");
+    @MethodSource("provideWrongPointAndMessage")
+    void create_ExceptionByBlank(String wrongPoint, String message) {
+        assertThatIllegalArgumentException().isThrownBy(() -> Point.create(wrongPoint))
+                .withMessage(message);
     }
 
-    @Test
-    @DisplayName("x와 y를 구분하는 구분자가 없는 문자열로 객체를 생성하면 예외를 발생시킨다.")
-    void create_ExceptionByNonHavingDelimiter() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Point.create("(12)"))
-                .withMessage("x, y 값을 구분하는 구분자 입력이 없습니다.");
-    }
-
-    @ParameterizedTest
-    @DisplayName("x, y 중 하나의 값에 대한 정보로만 객체를 생성하면 예외를 발생시킨다.")
-    @ValueSource(strings = {"(1,)", "(,2)"})
-    void create_ExceptionByOnlyOneValue(String wrongCoordinate) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Point.create(wrongCoordinate))
-                .withMessage("x, y 값 중 하나만 입력하셨습니다.");
+    private static Stream<Arguments> provideWrongPointAndMessage() {
+        return Stream.of(
+                Arguments.of("()", "좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다."),
+                Arguments.of("( )", "좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다."),
+                Arguments.of("(1 , 2)", "좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다."),
+                Arguments.of("(12)", "x, y 값을 구분하는 구분자 입력이 없습니다."),
+                Arguments.of("(1,)", "x, y 값 중 하나만 입력하셨습니다."),
+                Arguments.of("(,2)", "x, y 값 중 하나만 입력하셨습니다.")
+        );
     }
 
     @Test
