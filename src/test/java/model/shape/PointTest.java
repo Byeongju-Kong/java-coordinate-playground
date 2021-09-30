@@ -41,20 +41,34 @@ class PointTest {
     }
 
     @ParameterizedTest
-    @DisplayName("x, y 중 하나의 값만 같은 경우에만 true를 반환한다.")
-    @MethodSource("providePointsAndNotSameOrDiagonalExpect")
-    void isNotSameOrDiagonal(Point another, boolean expect) {
+    @DisplayName("Point 객체를 받아 x 값이 같으면 true를 반환한다.")
+    @MethodSource("providePointsAndSameXExpect")
+    void hasSameX(Point another, boolean expect) {
         Point standard = Point.create("(1,1)");
-        boolean actual = standard.hasSameXOrSameY(another);
+        boolean actual = standard.hasSameX(another);
         assertThat(actual).isEqualTo(expect);
     }
 
-    private static Stream<Arguments> providePointsAndNotSameOrDiagonalExpect() {
+    private static Stream<Arguments> providePointsAndSameXExpect() {
         return Stream.of(
-                Arguments.of(Point.create("1,1"), false),
                 Arguments.of(Point.create("1,2"), true),
-                Arguments.of(Point.create("2,1"), true),
-                Arguments.of(Point.create("2,2"), false)
+                Arguments.of(Point.create("2,1"), false)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("Point 객체를 받아 x 값이 같으면 true를 반환한다.")
+    @MethodSource("providePointsAndSameYExpect")
+    void hasSameY(Point another, boolean expect) {
+        Point standard = Point.create("(1,1)");
+        boolean actual = standard.hasSameY(another);
+        assertThat(actual).isEqualTo(expect);
+    }
+
+    private static Stream<Arguments> providePointsAndSameYExpect() {
+        return Stream.of(
+                Arguments.of(Point.create("1,2"), false),
+                Arguments.of(Point.create("2,1"), true)
         );
     }
 }
