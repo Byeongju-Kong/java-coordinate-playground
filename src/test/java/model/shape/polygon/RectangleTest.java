@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 class RectangleTest {
     @ParameterizedTest
     @DisplayName("직사각형을 만들 수 없으면 예외를 발생시킨다.")
-    @MethodSource("provideWrongRectangle")
+    @MethodSource("provideWrongPointsAndMessage")
     void generate_ExceptionByOverlappedPoints(String[] points, String message) {
         assertThatIllegalArgumentException().isThrownBy(() -> Rectangle.generate(points))
                 .withMessage(message);
     }
 
-    private static Stream<Arguments> provideWrongRectangle() {
+    private static Stream<Arguments> provideWrongPointsAndMessage() {
         return Stream.of(
                 Arguments.of(new String[]{"(1,1)", "(1,1)", "(2,1)", "(2,2)"}, "점에 중복이 있습니다."),
                 Arguments.of(new String[]{"(1,1)", "(2,1)", "(2,2)"}, "점이 4개가 아닙니다."),
