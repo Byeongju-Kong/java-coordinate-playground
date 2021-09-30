@@ -38,13 +38,13 @@ public class Rectangle implements Polygon {
 
     private boolean hasSameXOrY(final Point standardPoint) {
         return points.stream()
-                .filter(standardPoint::isNotSameOrDiagonal)
+                .filter(standardPoint::hasSameXOrSameY)
                 .count() == 2;
     }
 
     public double getArea() {
         List<Double> lines = points.stream()
-                .filter(point -> points.get(0).isNotSameOrDiagonal(point))
+                .filter(point -> points.get(0).hasSameXOrSameY(point))
                 .map(point -> points.get(0).getDistance(point))
                 .collect(Collectors.toUnmodifiableList());
         return lines.get(0) * lines.get(1);

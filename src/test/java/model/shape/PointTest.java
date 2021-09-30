@@ -50,7 +50,7 @@ class PointTest {
     @MethodSource("providePointsAndNotSameOrDiagonalExpect")
     void isNotSameOrDiagonal(Point another, boolean expect) {
         Point standard = Point.create("1,1");
-        boolean actual = standard.isNotSameOrDiagonal(another);
+        boolean actual = standard.hasSameXOrSameY(another);
         assertThat(actual).isEqualTo(expect);
     }
 
