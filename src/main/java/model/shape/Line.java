@@ -15,6 +15,9 @@ public class Line {
     }
 
     public void validateLine(String[] points) {
+        if (points.length != 2) {
+            throw new IllegalArgumentException("점이 두 개 있어야 선을 생성 할 수 있습니다.");
+        }
         if (points[0].equals(points[1])) {
             throw new IllegalArgumentException("두 점이 같은 위치에 있으면 선을 생성할 수 없습니다.");
         }
