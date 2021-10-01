@@ -25,8 +25,6 @@ class RectangleTest {
 
     private static Stream<Arguments> provideWrongPointsAndMessage() {
         return Stream.of(
-                Arguments.of(Arrays.asList(Point.create("(1,1)"), Point.create("(1,1)"), Point.create("(2,1)")),
-                        "점이 4개가 아닙니다."),
                 Arguments.of(Arrays.asList(Point.create("(1,2)"), Point.create("(1,3)"), Point.create("(3,1)"), Point.create("(3,3)")),
                         "네 각이 직각이 아닙니다."),
                 Arguments.of(Arrays.asList(Point.create("(1,1)"), Point.create("(2,1)"), Point.create("(2,2)"), Point.create("(3,2)")),

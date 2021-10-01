@@ -18,9 +18,6 @@ public class Rectangle implements Polygon {
     }
 
     private void validate(final List<Point> points) {
-        if (points.size() != 4) {
-            throw new IllegalArgumentException("점이 4개가 아닙니다.");
-        }
         if (!points.stream().allMatch(this::hasSameXOrY)) {
             throw new IllegalArgumentException("네 각이 직각이 아닙니다.");
         }
