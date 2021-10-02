@@ -38,7 +38,7 @@ class RectangleTest {
         Rectangle rectangle = Rectangle.generate(
                 Arrays.asList(Point.create("(1,1)"), Point.create("(1,3)"), Point.create("(3,1)"), Point.create("(3,3)")));
         double expect = 4.0;
-        double actual = rectangle.getArea();
+        double actual = rectangle.getAttribute();
         assertThat(actual).isEqualTo(expect);
     }
 }

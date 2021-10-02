@@ -35,7 +35,7 @@ class TriangleTest {
     void getArea() {
         Triangle triangle = Triangle.generate(Arrays.asList(Point.create("(0,0)"), Point.create("(2,0)"), Point.create("(0,2)")));
         double expect = 2.0;
-        double actual = triangle.getArea();
+        double actual = triangle.getAttribute();
         assertThat(actual).isEqualTo(expect, offset(0.00099));
     }
 }

@@ -30,7 +30,7 @@ public class Rectangle implements Polygon {
                 .count() == 2;
     }
 
-    public double getArea() {
+    public double getAttribute() {
         List<Double> lines = points.stream()
                 .filter(point -> points.get(0).hasSameX(point) || points.get(0).hasSameY(point))
                 .filter(point -> !(points.get(0).hasSameX(point) && points.get(0).hasSameY(point)))
