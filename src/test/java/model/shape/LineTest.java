@@ -12,7 +12,7 @@ class LineTest {
     @DisplayName("Line을 생성하고 길이를 반환한다.")
     void getLength() {
         Line line = Line.generate(Arrays.asList(Point.create("(1,1)"), Point.create("(2,2)")));
-        double actual = line.getLength();
+        double actual = line.getAttribute();
         double expect = 1.414;
         assertThat(actual).isEqualTo(expect, offset(0.00099));
     }

@@ -1,8 +1,10 @@
 package model.shape;
 
+import model.shape.polygon.Shape;
+
 import java.util.List;
 
-public class Line {
+public class Line implements Shape {
     private final Point firstPoint;
     private final Point secondPoint;
 
@@ -26,7 +28,7 @@ public class Line {
         return points.get(0).hasSameX(points.get(1)) && points.get(0).hasSameY(points.get(1));
     }
 
-    public double getLength() {
+    public double getAttribute() {
         return firstPoint.getDistance(secondPoint);
     }
 }
