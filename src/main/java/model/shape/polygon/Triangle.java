@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Triangle {
+public class Triangle implements Shape{
     private final List<Line> lines;
 
     private Triangle(final List<Point> points) {
