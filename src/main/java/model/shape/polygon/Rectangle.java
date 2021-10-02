@@ -5,7 +5,7 @@ import model.shape.Point;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Rectangle implements Polygon {
+public class Rectangle implements Shape {
     private final List<Point> points;
 
     private Rectangle(final List<Point> points) {

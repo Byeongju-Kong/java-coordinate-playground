@@ -1,5 +1,5 @@
 package model.shape.polygon;
 
-public interface Polygon {
+public interface Shape {
     double getAttribute();
 }
