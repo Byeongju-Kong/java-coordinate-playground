@@ -28,6 +28,7 @@ public class Line implements Shape {
         return points.get(0).hasSameX(points.get(1)) && points.get(0).hasSameY(points.get(1));
     }
 
+    @Override
     public double getAttribute() {
         return firstPoint.getDistance(secondPoint);
     }

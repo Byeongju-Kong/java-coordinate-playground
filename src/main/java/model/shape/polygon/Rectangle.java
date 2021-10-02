@@ -30,6 +30,7 @@ public class Rectangle implements Shape {
                 .count() == 2;
     }
 
+    @Override
     public double getAttribute() {
         List<Double> lines = points.stream()
                 .filter(point -> points.get(0).hasSameX(point) || points.get(0).hasSameY(point))
