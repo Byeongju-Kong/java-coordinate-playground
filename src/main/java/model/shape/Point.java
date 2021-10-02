@@ -43,8 +43,11 @@ public class Point {
                 + Math.pow(y.getDifference(another.y), 2));
     }
 
-    public boolean isNotSameOrDiagonal(final Point another) {
-        return (x.equals(another.x) && !y.equals(another.y)) ||
-                (!x.equals(another.x) && y.equals(another.y));
+    public boolean hasSameX(final Point another) {
+        return x.equals(another.x);
+    }
+
+    public boolean hasSameY(final Point another) {
+        return y.equals(another.y);
     }
 }

@@ -2,35 +2,39 @@ package model.shape.polygon;
 
 import model.shape.Point;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class Rectangle implements Polygon {
+public class Rectangle implements Shape {
     private final List<Point> points;
 
-    private Rectangle(final String[] points) {
-        validateOverlap(points);
-        this.points = new ArrayList<>();
-        IntStream.range(0, 4)
-                .forEach(index -> this.points.add(Point.create(points[index])));
+    private Rectangle(final List<Point> points) {
+        this.points = points;
+        validate(points);
     }
 
-    public static Rectangle generate(final String[] points) {
+    public static Rectangle generate(final List<Point> points) {
         return new Rectangle(points);
     }
 
-    private void validateOverlap(final String[] points) throws IllegalArgumentException {
-        if (Arrays.stream(points).distinct().count() != 4) {
-            throw new IllegalArgumentException("네 점 중에 중복되는 점이 있습니다.");
+    private void validate(final List<Point> points) {
+        if (!points.stream().allMatch(this::hasSameXOrY)) {
+            throw new IllegalArgumentException("네 각이 직각이 아닙니다.");
         }
     }
 
-    public double getArea() {
+    private boolean hasSameXOrY(final Point standardPoint) {
+        return points.stream()
+                .filter(point -> point.hasSameX(standardPoint) || point.hasSameY(standardPoint))
+                .filter(point -> !(point.hasSameX(standardPoint) && point.hasSameY(standardPoint)))
+                .count() == 2;
+    }
+
+    @Override
+    public double getAttribute() {
         List<Double> lines = points.stream()
-                .filter(point -> points.get(0).isNotSameOrDiagonal(point))
+                .filter(point -> points.get(0).hasSameX(point) || points.get(0).hasSameY(point))
+                .filter(point -> !(points.get(0).hasSameX(point) && points.get(0).hasSameY(point)))
                 .map(point -> points.get(0).getDistance(point))
                 .collect(Collectors.toUnmodifiableList());
         return lines.get(0) * lines.get(1);
