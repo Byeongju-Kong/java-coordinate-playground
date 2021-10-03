@@ -1,6 +1,10 @@
 package model.dto;
 
+import model.shape.Point;
+
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputDTO {
     private static final String DELIMITER = "-";
@@ -25,7 +29,9 @@ public class InputDTO {
         return points;
     }
 
-    public String[] getInputPoints() {
-        return points;
+    public List<Point> getInputPoints() {
+        return Arrays.stream(points)
+                .map(Point::create)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
