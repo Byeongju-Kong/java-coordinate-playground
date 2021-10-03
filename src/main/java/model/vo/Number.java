@@ -8,7 +8,7 @@ public class Number {
     private static final String NUMBER_REGEX = "^[0-9]*$";
     private final int value;
 
-    private Number(final String value) {
+    private Number(final String value) throws IllegalArgumentException {
         this.value = Integer.parseInt(value);
     }
 

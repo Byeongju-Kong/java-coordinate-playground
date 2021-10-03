@@ -11,18 +11,18 @@ import java.util.stream.IntStream;
 public class Triangle implements Shape{
     private final List<Line> lines;
 
-    private Triangle(final List<Point> points) {
+    private Triangle(final List<Point> points) throws IllegalArgumentException {
         checkPointsGenerateLine(points);
         lines = new ArrayList<>();
         IntStream.range(0, 3)
                 .forEach(index -> lines.add(Line.generate(Arrays.asList(points.get(index), points.get((index+1) % 3)))));
     }
 
-    public static Triangle generate(final List<Point> points) {
+    public static Triangle generate(final List<Point> points) throws IllegalArgumentException {
         return new Triangle(points);
     }
 
-    private void checkPointsGenerateLine(final List<Point> points) {
+    private void checkPointsGenerateLine(final List<Point> points) throws IllegalArgumentException {
         if (points.stream().anyMatch(point -> doesGenerateLine(point, points))) {
             throw new IllegalArgumentException("세 점이 선을 이룹니다.");
         }

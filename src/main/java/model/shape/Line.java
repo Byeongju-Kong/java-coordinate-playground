@@ -8,17 +8,17 @@ public class Line implements Shape {
     private final Point firstPoint;
     private final Point secondPoint;
 
-    private Line(final List<Point> points) {
+    private Line(final List<Point> points) throws IllegalArgumentException {
         validateLine(points);
         firstPoint = points.get(0);
         secondPoint = points.get(1);
     }
 
-    public static Line generate(final List<Point> points) {
+    public static Line generate(final List<Point> points) throws IllegalArgumentException {
         return new Line(points);
     }
 
-    public void validateLine(final List<Point> points) {
+    public void validateLine(final List<Point> points) throws IllegalArgumentException {
         if (isSamePoints(points)) {
             throw new IllegalArgumentException("두 점이 같은 위치에 있으면 선을 생성할 수 없습니다.");
         }

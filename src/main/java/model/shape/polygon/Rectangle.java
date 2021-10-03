@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 public class Rectangle implements Shape {
     private final List<Point> points;
 
-    private Rectangle(final List<Point> points) {
+    private Rectangle(final List<Point> points) throws IllegalArgumentException {
         this.points = points;
         validate(points);
     }
 
-    public static Rectangle generate(final List<Point> points) {
+    public static Rectangle generate(final List<Point> points) throws IllegalArgumentException {
         return new Rectangle(points);
     }
 
-    private void validate(final List<Point> points) {
+    private void validate(final List<Point> points) throws IllegalArgumentException {
         if (!points.stream().allMatch(this::hasSameXOrY)) {
             throw new IllegalArgumentException("네 각이 직각이 아닙니다.");
         }
