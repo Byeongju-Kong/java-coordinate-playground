@@ -14,7 +14,4 @@ public abstract class CoordinateDisplay implements Display {
     public void alertWrongInput(String exceptionMessage) {
         System.out.println(exceptionMessage + "다시 입력하세요.");
     }
-
-    @Override
-    public abstract void showAttribute(double attribute);
 }
