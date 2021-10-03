@@ -2,6 +2,8 @@ package model.shape;
 
 import model.vo.Number;
 
+import java.util.Objects;
+
 public class Point {
     private static final String DELIMITER = ",";
     private static final String LEFT_BRACKET = "(";
@@ -49,5 +51,18 @@ public class Point {
 
     public boolean hasSameY(final Point another) {
         return y.equals(another.y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return Objects.equals(x, point.x) && Objects.equals(y, point.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
