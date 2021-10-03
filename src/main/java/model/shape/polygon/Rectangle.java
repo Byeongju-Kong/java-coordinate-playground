@@ -32,11 +32,11 @@ public class Rectangle implements Shape {
 
     @Override
     public double getAttribute() {
-        List<Double> lines = points.stream()
+        List<Double> lengths = points.stream()
                 .filter(point -> points.get(0).hasSameX(point) || points.get(0).hasSameY(point))
                 .filter(point -> !(points.get(0).hasSameX(point) && points.get(0).hasSameY(point)))
                 .map(point -> points.get(0).getDistance(point))
                 .collect(Collectors.toUnmodifiableList());
-        return lines.get(0) * lines.get(1);
+        return lengths.get(0) * lengths.get(1);
     }
 }
