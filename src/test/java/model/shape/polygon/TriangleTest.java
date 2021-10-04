@@ -26,7 +26,8 @@ class TriangleTest {
     private static Stream<Arguments> provideWrongPointsAndMessage() {
         return Stream.of(
                 Arguments.of(Arrays.asList(Point.create("(1,1)"), Point.create("(2,1)"), Point.create("(3,1)"))),
-                Arguments.of(Arrays.asList(Point.create("(1,1)"), Point.create("(1,2)"), Point.create("(1,3)")))
+                Arguments.of(Arrays.asList(Point.create("(1,1)"), Point.create("(1,2)"), Point.create("(1,3)"))),
+                Arguments.of(Arrays.asList(Point.create("(1,1)"), Point.create("(2,2)"), Point.create("(3,3)")))
         );
     }
 
