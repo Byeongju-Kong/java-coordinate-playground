@@ -9,11 +9,11 @@ public class Number {
     private final int value;
 
     private Number(final String value) throws IllegalArgumentException {
-        this.value = Integer.parseInt(value);
+        validateNumber(value.trim());
+        this.value = Integer.parseInt(value.trim());
     }
 
     public static Number generate(final String value) throws IllegalArgumentException {
-        validateNumber(value);
         return new Number(value);
     }
 
