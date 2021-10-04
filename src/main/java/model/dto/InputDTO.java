@@ -11,14 +11,15 @@ public class InputDTO {
     private final String[] points;
 
     private InputDTO(final String input) throws IllegalArgumentException {
-        points = parseInput(input);
+        validateInput(input);
+        points = input.split(DELIMITER);
     }
 
     public static InputDTO create(final String input) throws IllegalArgumentException {
         return new InputDTO(input);
     }
 
-    private String[] parseInput(final String input) throws IllegalArgumentException {
+    private void validateInput(final String input) throws IllegalArgumentException {
         if (!input.contains(DELIMITER)) {
             throw new IllegalArgumentException("점이 하나 밖에 존재하지 않습니다.");
         }
@@ -26,12 +27,15 @@ public class InputDTO {
         if (Arrays.stream(points).distinct().count() != points.length) {
             throw new IllegalArgumentException("중복된 점이 있습니다.");
         }
-        return points;
     }
 
     public List<Point> getInputPoints() {
         return Arrays.stream(points)
                 .map(Point::create)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public int getNumberOfPoints() {
+        return points.length;
     }
 }
