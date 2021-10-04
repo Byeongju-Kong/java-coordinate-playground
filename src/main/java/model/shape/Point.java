@@ -22,25 +22,21 @@ public class Point {
     }
 
     private String[] splitXAndY(String point) throws IllegalArgumentException {
-        validateCoordinate(point);
         point = point.replace(LEFT_BRACKET, "").replace(RIGHT_BRACKET, "");
+        validateCoordinate(point);
         return point.split(DELIMITER);
     }
 
     private void validateCoordinate(final String point) throws IllegalArgumentException {
-        if (point.contains(" ")) {
+        if (point.isBlank() || point.contains(" ")) {
             throw new IllegalArgumentException("좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다.");
         }
         if (!point.contains(DELIMITER)) {
             throw new IllegalArgumentException("x, y 값을 구분하는 구분자 입력이 없습니다.");
         }
-        if (!(String.valueOf(point.charAt(0)).equals(LEFT_BRACKET)
-                && String.valueOf(point.charAt(point.length() - 1)).equals(RIGHT_BRACKET))) {
-            throw new IllegalArgumentException("점을 담는 괄호가 잘못되었습니다.");
-        }
-        if (String.valueOf(point.charAt(point.indexOf(DELIMITER) - 1)).equals(LEFT_BRACKET) ||
-                String.valueOf(point.charAt(point.indexOf(DELIMITER) + 1)).equals(RIGHT_BRACKET)) {
-            throw new IllegalArgumentException("x, y 값 중 하나만 입력했습니다.");
+        if(String.valueOf(point.charAt(0)).equals(DELIMITER) ||
+                String.valueOf(point.charAt(point.length() - 1)).equals(DELIMITER)) {
+            throw new IllegalArgumentException("x, y 값 중 하나의 정보만 입력했습니다.");
         }
     }
 
