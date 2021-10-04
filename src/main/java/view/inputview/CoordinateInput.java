@@ -3,7 +3,11 @@ package view.inputview;
 import java.util.Scanner;
 
 public class CoordinateInput implements InputDisplay {
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public CoordinateInput(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public String inputPoints() {
         System.out.println("점을 입력하세요.");
