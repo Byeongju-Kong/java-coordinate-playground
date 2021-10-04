@@ -22,6 +22,7 @@ class PointTest {
 
     private static Stream<Arguments> provideWrongPointAndMessage() {
         return Stream.of(
+                Arguments.of(" ", "점에 대한 빈 입력이 있습니다."),
                 Arguments.of("(12)", "x, y 값을 구분하는 구분자 입력이 없습니다."),
                 Arguments.of("(1,)", "x, y 값 중 하나의 정보만 입력했습니다."),
                 Arguments.of("(,2)", "x, y 값 중 하나의 정보만 입력했습니다.")

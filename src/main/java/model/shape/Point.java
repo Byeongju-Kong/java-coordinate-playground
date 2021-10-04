@@ -24,6 +24,9 @@ public class Point {
     }
 
     private void validateCoordinate(final String point) throws IllegalArgumentException {
+        if(point.isBlank()) {
+            throw new IllegalArgumentException("점에 대한 빈 입력이 있습니다.");
+        }
         if (!point.contains(DELIMITER)) {
             throw new IllegalArgumentException("x, y 값을 구분하는 구분자 입력이 없습니다.");
         }
