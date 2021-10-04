@@ -33,10 +33,6 @@ public class InputDTO {
         if (isBracketOpen) {
             throw new IllegalArgumentException("점을 담는 괄호가 잘못되었습니다.");
         }
-        String[] points = input.split(DELIMITER);
-        if (Arrays.stream(points).distinct().count() != points.length) {
-            throw new IllegalArgumentException("중복된 점이 있습니다.");
-        }
     }
 
     private void checkWrongBracket(char bracket) {
