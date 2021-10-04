@@ -11,11 +11,10 @@ public class Point {
     private final Number x;
     private final Number y;
 
-    private Point(final String point) throws IllegalArgumentException {
+    private Point(String point) throws IllegalArgumentException {
+        point = point.replace(LEFT_BRACKET, "").replace(RIGHT_BRACKET, "");
         validateCoordinate(point);
-        String[] numbers = point.replace(LEFT_BRACKET, "")
-                .replace(RIGHT_BRACKET, "")
-                .split(DELIMITER);
+        String[] numbers = point.split(DELIMITER);
         this.x = Number.generate(numbers[0]);
         this.y = Number.generate(numbers[1]);
     }
@@ -37,17 +36,12 @@ public class Point {
         }
     }
 
-    public double getDistance(final Point another) {
-        return Math.sqrt(Math.pow(x.getDifference(another.x), 2)
-                + Math.pow(y.getDifference(another.y), 2));
+    public int getXDifference(final Point another) {
+        return x.getDifference(another.x);
     }
 
-    public boolean hasSameX(final Point another) {
-        return x.equals(another.x);
-    }
-
-    public boolean hasSameY(final Point another) {
-        return y.equals(another.y);
+    public int getYDifference(final Point another) {
+        return y.getDifference(another.y);
     }
 
     @Override
