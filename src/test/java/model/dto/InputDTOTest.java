@@ -35,6 +35,12 @@ class InputDTOTest {
     private static Stream<Arguments> provideWrongInputAndExceptionMessage() {
         return Stream.of(
                 Arguments.of("(1,1)", "점이 하나 밖에 존재하지 않습니다."),
+                Arguments.of("1,1)-(2,2)","점을 담는 괄호가 잘못되었습니다."),
+                Arguments.of("(1,1(-(2,2)","점을 담는 괄호가 잘못되었습니다."),
+                Arguments.of(")1,1)-(2,2)","점을 담는 괄호가 잘못되었습니다."),
+                Arguments.of("(1,1-(2,2)","점을 담는 괄호가 잘못되었습니다."),
+                Arguments.of("(1,1)-)2,2)","점을 담는 괄호가 잘못되었습니다."),
+                Arguments.of("(1,1)-(2,2","점을 담는 괄호가 잘못되었습니다."),
                 Arguments.of("(1,1)-(2,2)-(3,3)-(2,2)", "중복된 점이 있습니다.")
         );
     }
