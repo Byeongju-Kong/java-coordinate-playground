@@ -12,19 +12,16 @@ public class Point {
     private final Number y;
 
     private Point(final String point) throws IllegalArgumentException {
-        String[] numbers = splitXAndY(point);
+        validateCoordinate(point);
+        String[] numbers = point.replace(LEFT_BRACKET, "")
+                .replace(RIGHT_BRACKET, "")
+                .split(DELIMITER);
         this.x = Number.generate(numbers[0]);
         this.y = Number.generate(numbers[1]);
     }
 
     public static Point create(final String point) throws IllegalArgumentException {
         return new Point(point);
-    }
-
-    private String[] splitXAndY(String point) throws IllegalArgumentException {
-        point = point.replace(LEFT_BRACKET, "").replace(RIGHT_BRACKET, "");
-        validateCoordinate(point);
-        return point.split(DELIMITER);
     }
 
     private void validateCoordinate(final String point) throws IllegalArgumentException {
@@ -34,7 +31,7 @@ public class Point {
         if (!point.contains(DELIMITER)) {
             throw new IllegalArgumentException("x, y 값을 구분하는 구분자 입력이 없습니다.");
         }
-        if(String.valueOf(point.charAt(0)).equals(DELIMITER) ||
+        if (String.valueOf(point.charAt(0)).equals(DELIMITER) ||
                 String.valueOf(point.charAt(point.length() - 1)).equals(DELIMITER)) {
             throw new IllegalArgumentException("x, y 값 중 하나의 정보만 입력했습니다.");
         }
