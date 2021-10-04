@@ -18,18 +18,19 @@ public class Line implements Shape {
         return new Line(points);
     }
 
-    public void validateLine(final List<Point> points) throws IllegalArgumentException {
-        if (isSamePoints(points)) {
+    private void validateLine(final List<Point> points) throws IllegalArgumentException {
+        if (validateOverlap(points)) {
             throw new IllegalArgumentException("두 점이 같은 위치에 있으면 선을 생성할 수 없습니다.");
         }
     }
 
-    private boolean isSamePoints(final List<Point> points) {
-        return points.get(0).hasSameX(points.get(1)) && points.get(0).hasSameY(points.get(1));
+    private boolean validateOverlap(final List<Point> points) {
+        return points.get(0).equals(points.get(1));
     }
 
     @Override
     public double getAttribute() {
-        return firstPoint.getDistance(secondPoint);
+        return Math.sqrt(Math.pow(firstPoint.getXDifference(secondPoint), 2)
+                + Math.pow(firstPoint.getYDifference(secondPoint), 2));
     }
 }
