@@ -21,12 +21,13 @@ class PointTest {
 
     private static Stream<Arguments> provideWrongPointAndMessage() {
         return Stream.of(
-                Arguments.of("()", "좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다."),
                 Arguments.of("( )", "좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다."),
                 Arguments.of("(1 , 2)", "좌표에 대한 입력에 공백이 있거나 좌표에 대한 정보가 없습니다."),
+                Arguments.of("(1,2", "점을 담는 괄호가 잘못되었습니다."),
+                Arguments.of("1,2)", "점을 담는 괄호가 잘못되었습니다."),
                 Arguments.of("(12)", "x, y 값을 구분하는 구분자 입력이 없습니다."),
-                Arguments.of("(1,)", "x, y 값 중 하나만 입력하셨습니다."),
-                Arguments.of("(,2)", "x, y 값 중 하나만 입력하셨습니다.")
+                Arguments.of("(1,)", "x, y 값 중 하나만 입력했습니다."),
+                Arguments.of("(,2)", "x, y 값 중 하나만 입력했습니다.")
         );
     }
 
@@ -51,8 +52,8 @@ class PointTest {
 
     private static Stream<Arguments> providePointsAndSameXExpect() {
         return Stream.of(
-                Arguments.of(Point.create("1,2"), true),
-                Arguments.of(Point.create("2,1"), false)
+                Arguments.of(Point.create("(1,2)"), true),
+                Arguments.of(Point.create("(2,1)"), false)
         );
     }
 
@@ -67,8 +68,8 @@ class PointTest {
 
     private static Stream<Arguments> providePointsAndSameYExpect() {
         return Stream.of(
-                Arguments.of(Point.create("1,2"), false),
-                Arguments.of(Point.create("2,1"), true)
+                Arguments.of(Point.create("(1,2)"), false),
+                Arguments.of(Point.create("(2,1)"), true)
         );
     }
 }
