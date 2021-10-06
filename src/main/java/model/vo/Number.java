@@ -8,12 +8,12 @@ public class Number {
     private static final String NUMBER_REGEX = "^[0-9]*$";
     private final int value;
 
-    private Number(final String value) {
-        this.value = Integer.parseInt(value);
+    private Number(final String value) throws IllegalArgumentException {
+        validateNumber(value.trim());
+        this.value = Integer.parseInt(value.trim());
     }
 
     public static Number generate(final String value) throws IllegalArgumentException {
-        validateNumber(value);
         return new Number(value);
     }
 
