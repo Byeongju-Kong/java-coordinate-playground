@@ -33,4 +33,9 @@ public class Line implements Shape {
         return Math.sqrt(Math.pow(firstPoint.getXDifference(secondPoint), 2)
                 + Math.pow(firstPoint.getYDifference(secondPoint), 2));
     }
+
+    @Override
+    public boolean hasPoint(final int x, final int y) {
+        return firstPoint.isSamePoint(x, y) || secondPoint.isSamePoint(x, y);
+    }
 }
