@@ -29,12 +29,13 @@ class NumberTest {
     }
 
     @Test
-    @DisplayName("필드 값을 반환한다.")
-    void getValue() {
+    @DisplayName("int 필드를 기준으로 같은 객체인지 반환한다.")
+    void equals() {
         Number number = Number.generate("10");
-        assertThat(number).isEqualTo(Number.generate("10"));
+        Number comparedNumber = Number.generate("10");
+        assertThat(number.equals(comparedNumber)).isTrue();
     }
-    
+
     @Test
     @DisplayName("int 타입 값을 받아 같은 수를 가지고 있는지 반환한다.")
     void hasSameValue() {
