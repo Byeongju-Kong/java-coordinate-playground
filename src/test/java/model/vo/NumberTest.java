@@ -34,4 +34,11 @@ class NumberTest {
         Number number = Number.generate("10");
         assertThat(number).isEqualTo(Number.generate("10"));
     }
+    
+    @Test
+    @DisplayName("int 타입 값을 받아 같은 수를 가지고 있는지 반환한다.")
+    void hasSameValue() {
+        Number number = Number.generate("10");
+        assertThat(number.hasSameValue(10)).isTrue();
+    }
 }

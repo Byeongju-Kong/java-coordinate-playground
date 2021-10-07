@@ -31,6 +31,10 @@ public class Number {
         return value - another.value;
     }
 
+    public boolean hasSameValue(final int value) {
+        return this.value == value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
