@@ -64,4 +64,10 @@ public class Rectangle implements Shape {
                 .toArray();
         return lengthsForArea[0] * lengthsForArea[1];
     }
+
+    @Override
+    public boolean hasPoint(final int x, final int y) {
+        return points.stream()
+                .anyMatch(point -> point.isSamePoint(x, y));
+    }
 }
