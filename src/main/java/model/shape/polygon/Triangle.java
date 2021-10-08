@@ -42,4 +42,10 @@ public class Triangle implements Shape {
         return Math.sqrt(s * (s - lines.get(0).getAttribute()) * (s - lines.get(1).getAttribute())
                 * (s - lines.get(2).getAttribute()));
     }
+
+    @Override
+    public boolean hasPoint(final int x, final int y) {
+        return lines.stream()
+                .anyMatch(line -> line.hasPoint(x, y));
+    }
 }
