@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -38,5 +39,14 @@ class TriangleTest {
         double expect = 2.0;
         double actual = triangle.getAttribute();
         assertThat(actual).isEqualTo(expect, offset(0.00099));
+    }
+
+    @ParameterizedTest
+    @DisplayName("x, y 값을 받아 도형이 해당 점과 같은 점을 갖고 있는지 반환한다.")
+    @CsvSource({"0, 0, true", "1, 1, false"})
+    void hasPoint(int x, int y, boolean expect) {
+        Triangle triangle = Triangle.generate(Arrays.asList(Point.create("(0,0)"), Point.create("(2,0)"), Point.create("(0,2)")));
+        boolean actual = triangle.hasPoint(x, y);
+        assertThat(actual).isEqualTo(expect);
     }
 }

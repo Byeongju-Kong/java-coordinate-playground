@@ -44,6 +44,10 @@ public class Point {
         return y.getDifference(another.y);
     }
 
+    public boolean isSamePoint(final int x, final int y) {
+        return this.x.hasSameValue(x) && this.y.hasSameValue(y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

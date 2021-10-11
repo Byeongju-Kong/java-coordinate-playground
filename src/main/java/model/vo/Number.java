@@ -27,8 +27,12 @@ public class Number {
         }
     }
 
-    public Integer getDifference(final Number another) {
+    public int getDifference(final Number another) {
         return value - another.value;
+    }
+
+    public boolean hasSameValue(final int value) {
+        return this.value == value;
     }
 
     @Override

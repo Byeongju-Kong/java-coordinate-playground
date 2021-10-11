@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -42,5 +43,14 @@ class PointTest {
                 () -> assertThat(actualXDifference).isEqualTo(expectXDifference),
                 () -> assertThat(actualYDifference).isEqualTo(expectYDifference)
         );
+    }
+
+    @ParameterizedTest
+    @DisplayName("x, y 값을 받아 같은 같은 점인지 반환한다.")
+    @CsvSource({"1, 2, true", "2, 2, false"})
+    void isSamePoint(int x, int y, boolean expect) {
+        Point point = Point.create("1, 2");
+        boolean actual = point.isSamePoint(x, y);
+        assertThat(actual).isEqualTo(expect);
     }
 }

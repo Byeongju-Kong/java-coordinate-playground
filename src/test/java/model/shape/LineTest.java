@@ -2,6 +2,8 @@ package model.shape;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
@@ -22,6 +24,15 @@ class LineTest {
     void create_ExceptionBySamePoints() {
         assertThatIllegalArgumentException().isThrownBy(() -> Line.generate(Arrays.asList(Point.create("(1,1)"), Point.create("(1,1)"))))
                 .withMessage("두 점이 같은 위치에 있으면 선을 생성할 수 없습니다.");
+    }
+    
+    @ParameterizedTest
+    @DisplayName("x, y 값을 받아 도형이 해당 점과 같은 점을 갖고 있는지 반환한다.")
+    @CsvSource({"1, 2, true", "3, 4, false"})
+    void hasPoint(int x, int y, boolean expect) {
+        Line line = Line.generate(Arrays.asList(Point.create("(1,2)"), Point.create("5, 6")));
+        boolean actual = line.hasPoint(x, y);
+        assertThat(actual).isEqualTo(expect);
     }
 }
 

@@ -32,8 +32,15 @@ public class Triangle implements Shape {
     }
 
     private boolean hasSameInclinations(final List<Point> points) {
-        return points.get(0).getYDifference(points.get(1)) / points.get(0).getXDifference(points.get(1)) ==
-                points.get(1).getYDifference(points.get(2)) / points.get(1).getXDifference(points.get(2));
+        return calculateInclination(points.get(0), points.get(1)) ==
+                calculateInclination(points.get(1), points.get(2));
+    }
+
+    private double calculateInclination(Point firstPoint, Point secondPoint) {
+        if (firstPoint.getXDifference(secondPoint) == 0) {
+            return Double.POSITIVE_INFINITY;
+        }
+        return (double) firstPoint.getYDifference(secondPoint) / firstPoint.getXDifference(secondPoint);
     }
 
     @Override
@@ -41,5 +48,11 @@ public class Triangle implements Shape {
         double s = (lines.get(0).getAttribute() + lines.get(1).getAttribute() + lines.get(2).getAttribute()) / 2;
         return Math.sqrt(s * (s - lines.get(0).getAttribute()) * (s - lines.get(1).getAttribute())
                 * (s - lines.get(2).getAttribute()));
+    }
+
+    @Override
+    public boolean hasPoint(final int x, final int y) {
+        return lines.stream()
+                .anyMatch(line -> line.hasPoint(x, y));
     }
 }
