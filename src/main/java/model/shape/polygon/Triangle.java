@@ -45,9 +45,11 @@ public class Triangle implements Shape {
 
     @Override
     public double getAttribute() {
-        double s = (lines.get(0).getAttribute() + lines.get(1).getAttribute() + lines.get(2).getAttribute()) / 2;
-        return Math.sqrt(s * (s - lines.get(0).getAttribute()) * (s - lines.get(1).getAttribute())
-                * (s - lines.get(2).getAttribute()));
+        double standardOfLinesForArea = (lines.get(0).getAttribute() + lines.get(1).getAttribute() + lines.get(2).getAttribute()) / 2;
+        return Math.sqrt(standardOfLinesForArea
+                * (standardOfLinesForArea - lines.get(0).getAttribute())
+                * (standardOfLinesForArea - lines.get(1).getAttribute())
+                * (standardOfLinesForArea - lines.get(2).getAttribute()));
     }
 
     @Override
