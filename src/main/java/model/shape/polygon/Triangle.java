@@ -13,13 +13,18 @@ public class Triangle implements Shape {
 
     private Triangle(final List<Point> points) throws IllegalArgumentException {
         validate(points);
-        lines = new ArrayList<>();
-        IntStream.range(0, 3)
-                .forEach(index -> lines.add(Line.generate(Arrays.asList(points.get(index), points.get((index + 1) % 3)))));
+        lines = generateLines(points);
     }
 
     public static Triangle generate(final List<Point> points) throws IllegalArgumentException {
         return new Triangle(points);
+    }
+
+    private List<Line> generateLines(final List<Point> points) {
+        List<Line> lines = new ArrayList<>();
+        IntStream.range(0, 3)
+                .forEach(index -> lines.add(Line.generate(Arrays.asList(points.get(index), points.get((index + 1) % 3)))));
+        return lines;
     }
 
     private void validate(final List<Point> points) throws IllegalArgumentException {
