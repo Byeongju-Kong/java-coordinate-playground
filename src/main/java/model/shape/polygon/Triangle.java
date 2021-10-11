@@ -11,13 +11,13 @@ import java.util.stream.IntStream;
 public class Triangle implements Shape {
     private final List<Line> lines;
 
+    public static Triangle generate(final List<Point> points) throws IllegalArgumentException {
+        return new Triangle(points);
+    }
+
     private Triangle(final List<Point> points) throws IllegalArgumentException {
         validate(points);
         lines = generateLines(points);
-    }
-
-    public static Triangle generate(final List<Point> points) throws IllegalArgumentException {
-        return new Triangle(points);
     }
 
     private List<Line> generateLines(final List<Point> points) {

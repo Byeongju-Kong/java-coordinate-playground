@@ -13,13 +13,13 @@ import static java.lang.Math.pow;
 public class Rectangle implements Shape {
     private final List<Point> points;
 
+    public static Rectangle generate(final List<Point> points) throws IllegalArgumentException {
+        return new Rectangle(points);
+    }
+
     private Rectangle(final List<Point> points) throws IllegalArgumentException {
         this.points = points;
         validate();
-    }
-
-    public static Rectangle generate(final List<Point> points) throws IllegalArgumentException {
-        return new Rectangle(points);
     }
 
     private void validate() throws IllegalArgumentException {

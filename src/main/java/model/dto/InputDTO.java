@@ -14,13 +14,13 @@ public class InputDTO {
     private final String[] points;
     private boolean isBracketOpen = false;
 
+    public static InputDTO create(final String input) throws IllegalArgumentException {
+        return new InputDTO(input);
+    }
+
     private InputDTO(final String input) throws IllegalArgumentException {
         validateInput(input);
         points = input.split(DELIMITER);
-    }
-
-    public static InputDTO create(final String input) throws IllegalArgumentException {
-        return new InputDTO(input);
     }
 
     private void validateInput(final String input) throws IllegalArgumentException {
