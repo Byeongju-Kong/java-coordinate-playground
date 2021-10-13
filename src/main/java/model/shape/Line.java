@@ -8,14 +8,14 @@ public class Line implements Shape {
     private final Point firstPoint;
     private final Point secondPoint;
 
+    public static Line generate(final List<Point> points) throws IllegalArgumentException {
+        return new Line(points);
+    }
+
     private Line(final List<Point> points) throws IllegalArgumentException {
         validateLine(points);
         firstPoint = points.get(0);
         secondPoint = points.get(1);
-    }
-
-    public static Line generate(final List<Point> points) throws IllegalArgumentException {
-        return new Line(points);
     }
 
     private void validateLine(final List<Point> points) throws IllegalArgumentException {

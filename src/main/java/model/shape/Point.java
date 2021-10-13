@@ -11,16 +11,16 @@ public class Point {
     private final Number x;
     private final Number y;
 
+    public static Point create(final String point) throws IllegalArgumentException {
+        return new Point(point);
+    }
+
     private Point(String point) throws IllegalArgumentException {
         point = point.replace(LEFT_BRACKET, "").replace(RIGHT_BRACKET, "");
         validateCoordinate(point);
         String[] numbers = point.split(DELIMITER);
         this.x = Number.generate(numbers[0]);
         this.y = Number.generate(numbers[1]);
-    }
-
-    public static Point create(final String point) throws IllegalArgumentException {
-        return new Point(point);
     }
 
     private void validateCoordinate(final String point) throws IllegalArgumentException {
