@@ -32,12 +32,16 @@ public class CoordinateController {
 
     private void generateShape() {
         try {
-            inputDTO = InputDTO.create(inputDisplay.inputPoints());
-            shape = Shapes.findShape(inputDTO.getInputPoints());
-            wrongInput = false;
+            inputPoints();
         } catch (IllegalArgumentException exception) {
             inputDisplay.showExceptionMessage(exception.getMessage());
         }
+    }
+
+    private void inputPoints() throws IllegalArgumentException {
+        inputDTO = InputDTO.create(inputDisplay.inputPoints());
+        shape = Shapes.findShape(inputDTO.getInputPoints());
+        wrongInput = false;
     }
 
     private void findOutputDisplay() {
