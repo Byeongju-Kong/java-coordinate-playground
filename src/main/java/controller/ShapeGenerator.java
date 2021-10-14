@@ -9,11 +9,10 @@ public class ShapeGenerator {
     private final InputDisplay inputDisplay;
     private boolean inputPointsGenerateWrongShape = true;
     private Shape shape;
-    private final InputDTO inputDTO;
+    private InputDTO inputDTO;
 
     public ShapeGenerator(final InputDisplay inputDisplay) throws IllegalArgumentException {
         this.inputDisplay = inputDisplay;
-        inputDTO = InputDTO.create(inputDisplay.inputPoints());
     }
 
     public Shape generateShape() throws IllegalArgumentException {
@@ -25,6 +24,7 @@ public class ShapeGenerator {
 
     private void generateShapeByPoints() throws IllegalArgumentException {
         try {
+            inputDTO = InputDTO.create(inputDisplay.inputPoints());
             shape = Shapes.findShape(inputDTO.getInputPoints());
             inputPointsGenerateWrongShape = false;
         } catch (Exception exception) {
