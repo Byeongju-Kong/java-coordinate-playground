@@ -27,7 +27,7 @@ public class ShapeGenerator {
         try {
             shape = Shapes.findShape(inputDTO.getInputPoints());
             inputPointsGenerateWrongShape = false;
-        } catch (IllegalArgumentException exception) {
+        } catch (Exception exception) {
             inputDisplay.showExceptionMessage(exception.getMessage());
         }
     }
