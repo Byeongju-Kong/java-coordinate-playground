@@ -12,15 +12,15 @@ public class CoordinateController {
     private final InputDisplay inputDisplay;
     private OutputDisplay outputDisplay;
     private InputDTO inputDTO;
-    private boolean wrongInput;
+    private boolean inputPointsGenerateWrongShape;
 
     public CoordinateController(InputDisplay inputDisplay) {
         this.inputDisplay = inputDisplay;
-        wrongInput = true;
+        inputPointsGenerateWrongShape = true;
     }
 
     public void run() {
-        while (wrongInput) {
+        while (inputPointsGenerateWrongShape) {
             generateShape();
         }
         findOutputDisplay();
@@ -38,7 +38,7 @@ public class CoordinateController {
     private void inputPoints() throws IllegalArgumentException {
         inputDTO = InputDTO.create(inputDisplay.inputPoints());
         shape = Shapes.findShape(inputDTO.getInputPoints());
-        wrongInput = false;
+        inputPointsGenerateWrongShape = false;
     }
 
     private void findOutputDisplay() {
