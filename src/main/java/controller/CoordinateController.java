@@ -3,12 +3,9 @@ package controller;
 import model.dto.InputDTO;
 import model.shape.Shapes;
 import model.shape.polygon.Shape;
-import view.inputview.CoordinateInput;
 import view.inputview.InputDisplay;
 import view.outputview.OutputDisplay;
 import view.outputview.OutputDisplays;
-
-import java.util.Scanner;
 
 public class CoordinateController {
     private Shape shape;
@@ -46,12 +43,5 @@ public class CoordinateController {
 
     private void findOutputDisplay() {
         outputDisplay = OutputDisplays.findOutputView(inputDTO.getNumberOfPoints());
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        InputDisplay inputDisplay = new CoordinateInput(scanner);
-        CoordinateController coordinateController = new CoordinateController(inputDisplay);
-        coordinateController.run();
     }
 }
