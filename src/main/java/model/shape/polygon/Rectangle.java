@@ -43,6 +43,10 @@ public class Rectangle implements Shape {
                 .mapToDouble(point -> Line.generate(Arrays.asList(point, standardPoint)).getAttribute())
                 .filter(length -> length != lengthOfDialog)
                 .toArray();
+        return doesFitInTheDefinitionOfPythagoras(lengthsFromStandardPoint, lengthOfDialog);
+    }
+
+    private boolean doesFitInTheDefinitionOfPythagoras(final double[] lengthsFromStandardPoint, final double lengthOfDialog) {
         if (isSameBaseLineWithDiagonal(lengthsFromStandardPoint)) {
             return Math.round((pow(lengthsFromStandardPoint[0], 2) + pow(lengthsFromStandardPoint[0], 2)) * 100) / 100.0
                     == Math.round(pow(lengthOfDialog, 2) * 100) / 100.0;
