@@ -1,7 +1,7 @@
 package model.shape.polygon;
 
 import model.shape.Line;
-import model.shape.Point;
+import model.vo.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
