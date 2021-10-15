@@ -55,7 +55,7 @@ public class Rectangle implements Shape {
                 == Math.round(pow(lengthOfDialog, 2) * 100) / 100.0;
     }
 
-    private boolean isSameBaseLineWithDiagonal(double[] lengths) {
+    private boolean isSameBaseLineWithDiagonal(final double[] lengths) {
         return lengths.length == 1;
     }
 
