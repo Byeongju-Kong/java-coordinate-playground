@@ -1,6 +1,4 @@
-package model.shape;
-
-import model.vo.Number;
+package model.vo;
 
 import java.util.Objects;
 

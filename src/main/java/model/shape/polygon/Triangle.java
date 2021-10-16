@@ -1,7 +1,7 @@
 package model.shape.polygon;
 
 import model.shape.Line;
-import model.shape.Point;
+import model.vo.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +41,7 @@ public class Triangle implements Shape {
                 calculateInclination(points.get(1), points.get(2));
     }
 
-    private double calculateInclination(Point firstPoint, Point secondPoint) {
+    private double calculateInclination(final Point firstPoint, final Point secondPoint) {
         if (firstPoint.getXDifference(secondPoint) == 0) {
             return Double.POSITIVE_INFINITY;
         }

@@ -1,7 +1,7 @@
 package model.shape.polygon;
 
 import model.shape.Line;
-import model.shape.Point;
+import model.vo.Point;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,20 +38,24 @@ public class Rectangle implements Shape {
     }
 
     private boolean isRightAngle(final Point standardPoint, final double lengthOfDialog) {
-        double[] lengths = points.stream()
+        double[] lengthsFromStandardPoint = points.stream()
                 .filter(point -> !standardPoint.equals(point))
                 .mapToDouble(point -> Line.generate(Arrays.asList(point, standardPoint)).getAttribute())
                 .filter(length -> length != lengthOfDialog)
                 .toArray();
-        if (isSameBaseLineWithDiagonal(lengths)) {
-            return Math.round((pow(lengths[0], 2) + pow(lengths[0], 2)) * 100) / 100.0
+        return doesFitInTheDefinitionOfPythagoras(lengthsFromStandardPoint, lengthOfDialog);
+    }
+
+    private boolean doesFitInTheDefinitionOfPythagoras(final double[] lengthsFromStandardPoint, final double lengthOfDialog) {
+        if (isSameBaseLineWithDiagonal(lengthsFromStandardPoint)) {
+            return Math.round((pow(lengthsFromStandardPoint[0], 2) + pow(lengthsFromStandardPoint[0], 2)) * 100) / 100.0
                     == Math.round(pow(lengthOfDialog, 2) * 100) / 100.0;
         }
-        return Math.round((pow(lengths[0], 2) + pow(lengths[1], 2)) * 100) / 100.0
+        return Math.round((pow(lengthsFromStandardPoint[0], 2) + pow(lengthsFromStandardPoint[1], 2)) * 100) / 100.0
                 == Math.round(pow(lengthOfDialog, 2) * 100) / 100.0;
     }
 
-    private boolean isSameBaseLineWithDiagonal(double[] lengths) {
+    private boolean isSameBaseLineWithDiagonal(final double[] lengths) {
         return lengths.length == 1;
     }
 

@@ -1,6 +1,7 @@
 package model.shape;
 
 import model.shape.polygon.Shape;
+import model.vo.Point;
 
 import java.util.List;
 
