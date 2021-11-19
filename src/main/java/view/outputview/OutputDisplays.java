@@ -1,12 +1,16 @@
 package view.outputview;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class OutputDisplays {
-    private static final Map<Integer, OutputDisplay> OUTPUT_DISPLAYS
-            = Map.of(2, new LineDisplay(),
-            3, new TriangleDisplay(),
-            4, new RectangleDisplay());
+    private static final Map<Integer, OutputDisplay> OUTPUT_DISPLAYS = new HashMap<>();
+
+    static {
+        OUTPUT_DISPLAYS.put(2, new LineDisplay());
+        OUTPUT_DISPLAYS.put(3, new TriangleDisplay());
+        OUTPUT_DISPLAYS.put(4, new RectangleDisplay());
+    }
 
     private OutputDisplays() {
     }
