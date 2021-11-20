@@ -19,13 +19,6 @@ class LineTest {
         double expect = 1.414;
         assertThat(actual).isEqualTo(expect, offset(0.00099));
     }
-
-    @Test
-    @DisplayName("동일한 두 점 혹은 하나의 점으로 Line을 생성하려고 하면 예외를 발생시킨다.")
-    void create_ExceptionBySamePoints() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Line.generate(Arrays.asList(Point.create("(1,1)"), Point.create("(1,1)"))))
-                .withMessage("두 점이 같은 위치에 있으면 선을 생성할 수 없습니다.");
-    }
     
     @ParameterizedTest
     @DisplayName("x, y 값을 받아 도형이 해당 점과 같은 점을 갖고 있는지 반환한다.")

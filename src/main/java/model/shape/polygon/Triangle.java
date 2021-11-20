@@ -28,9 +28,6 @@ public class Triangle implements Shape {
     }
 
     private void validate(final List<Point> points) throws IllegalArgumentException {
-        if (points.stream().distinct().count() != 3) {
-            throw new IllegalArgumentException("점에 중복이 있습니다");
-        }
         if (hasSameInclinations(points)) {
             throw new IllegalArgumentException("세 점이 선을 이룹니다.");
         }
