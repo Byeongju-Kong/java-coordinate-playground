@@ -19,11 +19,11 @@ public class InputDTO {
     }
 
     private InputDTO(final String input) throws IllegalArgumentException {
-        validateInput(input);
+        validateInputForm(input);
         points = input.split(DELIMITER);
     }
 
-    private void validateInput(final String input) throws IllegalArgumentException {
+    private void validateInputForm(final String input) throws IllegalArgumentException {
         if (!input.contains(DELIMITER)) {
             throw new IllegalArgumentException("점이 하나 밖에 존재하지 않습니다.");
         }
