@@ -14,19 +14,8 @@ public class Line implements Shape {
     }
 
     private Line(final List<Point> points) throws IllegalArgumentException {
-        validateLine(points);
         firstPoint = points.get(0);
         secondPoint = points.get(1);
-    }
-
-    private void validateLine(final List<Point> points) throws IllegalArgumentException {
-        if (validateOverlap(points)) {
-            throw new IllegalArgumentException("두 점이 같은 위치에 있으면 선을 생성할 수 없습니다.");
-        }
-    }
-
-    private boolean validateOverlap(final List<Point> points) {
-        return points.get(0).equals(points.get(1));
     }
 
     @Override

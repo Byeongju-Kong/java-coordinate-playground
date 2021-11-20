@@ -19,11 +19,12 @@ public class InputDTO {
     }
 
     private InputDTO(final String input) throws IllegalArgumentException {
-        validateInput(input);
+        validateInputForm(input);
         points = input.split(DELIMITER);
+        validateOverlap();
     }
 
-    private void validateInput(final String input) throws IllegalArgumentException {
+    private void validateInputForm(final String input) throws IllegalArgumentException {
         if (!input.contains(DELIMITER)) {
             throw new IllegalArgumentException("점이 하나 밖에 존재하지 않습니다.");
         }
@@ -40,6 +41,12 @@ public class InputDTO {
             throw new IllegalArgumentException("점을 담는 괄호가 잘못되었습니다.");
         }
         isBracketOpen = !isBracketOpen;
+    }
+
+    private void validateOverlap() {
+        if(Arrays.stream(points).distinct().count() != points.length) {
+            throw new IllegalArgumentException("점에 중복이 있습니다.");
+        }
     }
 
     public List<Point> getInputPoints() {
